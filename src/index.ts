@@ -13,7 +13,6 @@ async function request<Type extends keyof ResourceTypes>(url: string, type: Type
 	return res[type]();
 }
 
-// i thought about this lmfao
 let lists = [
 	{
 		url: 'https://api.parcility.co/db/repos',
@@ -32,7 +31,6 @@ let lists = [
 	},
 ];
 
-// take 2
 let fetchList = async ({ url, arrayKey, repoURLKey }: typeof lists[0]) => {
 	let raw = (await request(url, 'json'))[arrayKey];
 	let repos: string[] = [];
@@ -89,3 +87,4 @@ const validateRepos = async (repos: string[]) => {
 	await writeFile('./repos.txt', repos.join('\n'), { encoding: 'utf-8' });
 	console.log('Validated repos were written out to repos.txt!');
 })();
+// Big thanks to @son1c for help with this
